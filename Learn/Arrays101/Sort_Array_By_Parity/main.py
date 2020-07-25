@@ -15,7 +15,6 @@ class Solution:
         return A
 
 
-
 if __name__ == "__main__":
     A = [0, 1, 0, 3, 12]
     sol = Solution()
