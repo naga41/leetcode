@@ -3,10 +3,15 @@ from typing import List
 
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        nums_hash = {}
+        for num in nums:
+            nums_hash[num] = 1
+
         dissappeared_nums = []
-        for i in range(len(nums)):
-            if i + 1 not in nums:
-                dissappeared_nums.append(i + 1)
+        for i in range(1, len(nums) + 1):
+            if i not in nums_hash:
+                dissappeared_nums.append(i)
+
         return dissappeared_nums
 
 
@@ -30,5 +35,9 @@ if __name__ == "__main__":
     print(sol.findDisappearedNumbers(nums))
 
     nums = [1]
+    print(nums)
+    print(sol.findDisappearedNumbers(nums))
+
+    nums = [10, 2, 5, 10, 9, 1, 1, 4, 3, 7]
     print(nums)
     print(sol.findDisappearedNumbers(nums))
