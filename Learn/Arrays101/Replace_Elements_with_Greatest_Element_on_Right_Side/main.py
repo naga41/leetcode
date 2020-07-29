@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -27,28 +28,27 @@ class Solution:
         return arr
 
 
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
+
+    def test(self):
+        test_patterns = [
+            ([17, 18, 5, 4, 6, 1], [18, 6, 6, 6, 1, -1]),
+            ([3, 5, 5], [5, 5, -1]),
+            ([0, 3, 2, 1], [3, 2, 1, -1]),
+            ([1, 2, 3, 4], [4, 4, 4, -1]),
+            ([0, 1, 2, 4, 2, 1], [4, 4, 4, 2, 1, -1]),
+            ([0, 0], [0, -1]),
+            ([0], [-1]),
+            ([], []),
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                actual = self.sol.replaceElements(param1)
+                self.assertEqual(expected, actual)
+
+
 if __name__ == "__main__":
-    arr = [17, 18, 5, 4, 6, 1]
-    sol = Solution()
-    print(sol.replaceElements(arr))
-
-    arr = [3, 5, 5]
-    print(sol.replaceElements(arr))
-
-    arr = [0, 3, 2, 1]
-    print(sol.replaceElements(arr))
-
-    arr = [1, 2, 3, 4]
-    print(sol.replaceElements(arr))
-
-    arr = [0, 1, 2, 4, 2, 1]
-    print(sol.replaceElements(arr))
-
-    arr = [0, 0]
-    print(sol.replaceElements(arr))
-
-    arr = [0]
-    print(sol.replaceElements(arr))
-
-    arr = []
-    print(sol.replaceElements(arr))
+    unittest.main()

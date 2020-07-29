@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -47,12 +48,21 @@ class Solution:
             else:
                 arr[i + possible_dups] = arr[i]
 
-        return arr
 
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
 
+    def test(self):
+        test_patterns = [
+            ([1, 0, 2, 3, 0, 4, 5, 0], [1, 0, 0, 2, 3, 0, 0, 4]),
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                self.sol.duplicateZeros(param1)
+                self.assertEqual(expected, param1)
 
 
 if __name__ == "__main__":
-    A = [1, 0, 2, 3, 0, 4, 5, 0]
-    sol = Solution()
-    print(sol.duplicateZeros(A))
+    unittest.main()

@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -11,7 +12,20 @@ class Solution:
         return even_num_count
 
 
-if __name__ == '__main__':
-    nums = [12, 345, 2, 6, 7896]
-    sol = Solution()
-    print(sol.findNumbers(nums))
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
+
+    def test(self):
+        test_patterns = [
+            ([12, 345, 2, 6, 7896], 2),
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                actual = self.sol.findNumbers(param1)
+                self.assertEqual(expected, actual)
+
+
+if __name__ == "__main__":
+    unittest.main()

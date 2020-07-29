@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -22,11 +23,21 @@ class Solution:
         return max(result, current_max)
 
 
-if __name__ == '__main__':
-    nums = [1, 1, 0, 1, 1, 1]
-    sol = Solution()
-    print(sol.findMaxConsecutiveOnes(nums))
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
 
-    nums = [1, 0, 1, 1, 0]
-    sol = Solution()
-    print(sol.findMaxConsecutiveOnes(nums))
+    def test(self):
+        test_patterns = [
+            ([1, 1, 0, 1, 1, 1], 6),
+            ([1, 0, 1, 1, 0], 4),
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                actual = self.sol.findMaxConsecutiveOnes(param1)
+                self.assertEqual(expected, actual)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -19,20 +20,24 @@ class Solution:
                 write_pointer += 1
 
 
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
+
+    def test(self):
+        test_patterns = [
+            ([0, 1, 0, 3, 12], [1, 3, 12, 0, 0]),
+            ([0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 0],
+                [1, 1, 1, 2, 2, 3, 3, 4, 0, 0, 0]),
+            ([0], [0]),
+            ([], []),
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                self.sol.moveZeroes(param1)
+                self.assertEqual(expected, param1)
+
+
 if __name__ == "__main__":
-    nums = [0, 1, 0, 3, 12]
-    sol = Solution()
-    print(sol.moveZeroes(nums))
-    print(nums)
-
-    nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 0]
-    print(sol.moveZeroes(nums))
-    print(nums)
-
-    nums = [0]
-    print(sol.moveZeroes(nums))
-    print(nums)
-
-    nums = []
-    print(sol.moveZeroes(nums))
-    print(nums)
+    unittest.main()

@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -11,28 +12,25 @@ class Solution:
         return need_change_num
 
 
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
+
+    def test(self):
+        test_patterns = [
+            ([1, 1, 4, 2, 1, 3], 3),
+            ([5, 1, 2, 3, 4], 5),
+            ([1, 2, 3, 4, 5], 0),
+            ([2, 1], 2),
+            ([1], 0),
+            ([], 0),
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                actual = self.sol.heightChecker(param1)
+                self.assertEqual(expected, actual)
+
+
 if __name__ == "__main__":
-    heights = [1, 1, 4, 2, 1, 3]
-    sol = Solution()
-    print(heights)
-    print(sol.heightChecker(heights))
-
-    heights = [5, 1, 2, 3, 4]
-    print(heights)
-    print(sol.heightChecker(heights))
-
-    heights = [1, 2, 3, 4, 5]
-    print(heights)
-    print(sol.heightChecker(heights))
-
-    heights = [2, 1]
-    print(heights)
-    print(sol.heightChecker(heights))
-
-    heights = [1]
-    print(heights)
-    print(sol.heightChecker(heights))
-
-    heights = []
-    print(heights)
-    print(sol.heightChecker(heights))
+    unittest.main()

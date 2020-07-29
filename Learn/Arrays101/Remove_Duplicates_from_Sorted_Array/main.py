@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -14,12 +15,21 @@ class Solution:
         return i + 1
 
 
-if __name__ == "__main__":
-    nums = [1, 1, 2]
-    sol = Solution()
-    print(sol.removeDuplicates(nums))
-    print(nums)
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
 
-    nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
-    print(sol.removeDuplicates(nums))
-    print(nums)
+    def test(self):
+        test_patterns = [
+            ([1, 1, 2], 2),
+            ([0, 0, 1, 1, 1, 2, 2, 3, 3, 4], 5),
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                actual = self.sol.removeDuplicates(param1)
+                self.assertEqual(expected, actual)
+
+
+if __name__ == "__main__":
+    unittest.main()
