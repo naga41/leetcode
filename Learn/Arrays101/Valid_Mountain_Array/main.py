@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -22,25 +23,26 @@ class Solution:
         return True
 
 
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
+
+    def test(self):
+        test_patterns = [
+            ([2, 1], False),
+            ([3, 5, 5], False),
+            ([0, 3, 2, 1], True),
+            ([1, 2, 3, 4], False),
+            ([0, 1, 2, 4, 2, 1], True),
+            ([0, 0], False),
+            ([0], False)
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                actual = self.sol.validMountainArray(param1)
+                self.assertEqual(expected, actual)
+
+
 if __name__ == "__main__":
-    nums = [2, 1]
-    sol = Solution()
-    print(sol.validMountainArray(nums))
-
-    nums = [3, 5, 5]
-    print(sol.validMountainArray(nums))
-
-    nums = [0, 3, 2, 1]
-    print(sol.validMountainArray(nums))
-
-    nums = [1, 2, 3, 4]
-    print(sol.validMountainArray(nums))
-
-    nums = [0, 1, 2, 4, 2, 1]
-    print(sol.validMountainArray(nums))
-
-    nums = [0, 0]
-    print(sol.validMountainArray(nums))
-
-    nums = [0]
-    print(sol.validMountainArray(nums))
+    unittest.main()

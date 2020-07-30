@@ -1,3 +1,4 @@
+import unittest
 from typing import List
 
 
@@ -15,28 +16,26 @@ class Solution:
         return A
 
 
+class Test(unittest.TestCase):
+    def setUp(self):
+        self.sol = Solution()
+
+    def test(self):
+        test_patterns = [
+            ([0, 1, 0, 3, 12], [0, 0, 12, 3, 1]),
+            ([0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 0],
+                [0, 0, 2, 2, 4, 0, 1, 3, 3, 1, 1]),
+            ([3, 1, 2, 4], [2, 4, 3, 1]),
+            ([1, 2], [2, 1]),
+            ([1], [1]),
+            ([], []),
+        ]
+
+        for param1, expected in test_patterns:
+            with self.subTest(param1=param1):
+                actual = self.sol.sortArrayByParity(param1)
+                self.assertEqual(expected, actual)
+
+
 if __name__ == "__main__":
-    A = [0, 1, 0, 3, 12]
-    sol = Solution()
-    print(sol.sortArrayByParity(A))
-    print(A)
-
-    A = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 0]
-    print(sol.sortArrayByParity(A))
-    print(A)
-
-    A = [3, 1, 2, 4]
-    print(sol.sortArrayByParity(A))
-    print(A)
-
-    A = [1, 2]
-    print(sol.sortArrayByParity(A))
-    print(A)
-
-    A = [1]
-    print(sol.sortArrayByParity(A))
-    print(A)
-
-    A = []
-    print(sol.sortArrayByParity(A))
-    print(A)
+    unittest.main()
