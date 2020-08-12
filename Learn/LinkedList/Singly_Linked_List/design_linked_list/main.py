@@ -28,7 +28,7 @@ class MyLinkedList:
         # or to move from the tail
         if index + 1 < self.size - index:
             curr = self.head
-            for _ in range(self.size + 1):
+            for _ in range(index + 1):
                 curr = curr.next
         else:
             curr = self.tail
@@ -116,7 +116,7 @@ class MyLinkedList:
             pred = self.head
             for _ in range(index):
                 pred = pred.next
-            succ = pred.next
+            succ = pred.next.next
         else:
             succ = self.tail
             for _ in range(self.size - index - 1):
